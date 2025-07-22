@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"log"
 	"os"
-
+	"context"
 	"github.com/bdgeraghty/GoBlog/internal/config"
 	"github.com/bdgeraghty/GoBlog/internal/database"
 	_ "github.com/lib/pq"
@@ -36,13 +36,16 @@ func main() {
 	cmds := commands{
 		registeredCommands: make(map[string]func(*state, command) error),
 	}
-	cmds.register("feeds", handlerFeeds)
-	cmds.register("addfeed", handlerAddFeed)
-	cmds.register("agg", handlerRSSFeeds)
-	cmds.register("login", handlerLogin)
+	cmds.register("unfollow", middlewareLoggedIn(handlerUnfollowFeed))
 	cmds.register("register", handlerRegister)
+	cmds.register("login", handlerLogin)
 	cmds.register("reset", handlerReset)
 	cmds.register("users", handlerListUsers)
+	cmds.register("agg", handlerAgg)
+	cmds.register("addfeed", middlewareLoggedIn(handlerAddFeed))
+	cmds.register("feeds", handlerListFeeds)
+	cmds.register("follow", middlewareLoggedIn(handlerFollow))
+	cmds.register("following", middlewareLoggedIn(handlerListFeedFollows))
 
 	if len(os.Args) < 2 {
 		log.Fatal("Usage: cli <command> [args...]")
@@ -55,4 +58,18 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+}
+func middlewareLoggedIn(next func(*state, command) error) func(*state, command) error {
+    return func(s *state, cmd command) error {	
+		
+		// Here you would typically check if the user is logged in.	
+        // ... check login ...
+		user, err := s.db.GetUser(context.Background(), s.cfg.CurrentUserName)
+		if err != nil {
+			return err
+		}
+		s.cfg.CurrentUserName = user.Name
+
+        return next(s, cmd)
+    }
 }

@@ -6,8 +6,6 @@ RETURNING *;
 -- name: GetFeeds :many
 SELECT * FROM feeds;
 
--- name: GetFeedsByUser :many
-SELECT * FROM feeds WHERE user_id = $1;
-
--- name: DeleteFeed :exec
-DELETE FROM feeds WHERE id = $1;
+-- name: GetFeedByURL :one
+SELECT * FROM feeds
+WHERE url = $1;

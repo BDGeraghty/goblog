@@ -72,6 +72,7 @@ func fetchFeed(ctx context.Context, feedURL string) (*RSSFeed, error) {
 
 	return &feed, nil
 }
+/*
 func handlerRSSFeeds(s *state, cmd command) error {
 	
 	cmd.Args = append(cmd.Args, "https://www.wagslane.dev/index.xml") // Temporary Hard Coded URL
@@ -91,22 +92,23 @@ func handlerRSSFeeds(s *state, cmd command) error {
 	printRSSFeed(feed)
 	return nil
 }
-
+*/
+/*
 func printRSSFeed(feed *RSSFeed) {
 	
-	/*
+	
 	fmt.Printf(" * Title:       %v\n", feed.Channel.Title)
 	fmt.Printf(" * Link:        %v\n", feed.Channel.Link)
 	fmt.Printf(" * Description: %v\n", feed.Channel.Description)
 	fmt.Printf(" * Items:       %d\n", len(feed.Channel.Items))
 
-	*/
+	
 
 	//feed.Channel.Title = html.UnescapeString(feed.Channel.Title)
 	//feed.Channel.Link = html.UnescapeString(feed.Channel.Link)
 	//feed.Channel.Description = html.UnescapeString(feed.Channel.Description)
 
-	/*
+	
 
 	for _, item := range feed.Channel.Items {
 		item.Title = html.UnescapeString(item.Title)
@@ -116,6 +118,7 @@ func printRSSFeed(feed *RSSFeed) {
 		fmt.Printf("   - %s (%s)\n", item.Title, item.Link)
 	}
 	//fmt.Printf("   - %s (%s)\n", "Optimize for simplicity", "https://wagslane.dev/posts/optimize-for-simplicit-first/)")
-	*/
+	
 	fmt.Printf("%+v\n", feed)
 }
+*/	
