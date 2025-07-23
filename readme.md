@@ -1,6 +1,6 @@
 # GoBlog (Gator)
-
-GoBlog (aka **Gator**) is a command-line RSS aggregation and blog management tool written in Go. It allows you to manage RSS feeds, follow feeds from other users, and aggregate blog posts from multiple sources.
+The original name of this app was Gator and the db name is gator - you should use what db name you'd like.
+GoBlog / gator db (aka **Gator**) is a command-line RSS aggregation and blog management tool written in Go. It allows you to manage RSS feeds, follow feeds from other users, and aggregate blog posts from multiple sources.
 
 ---
 
