@@ -8,10 +8,13 @@ import (
 )
 
 func handlerAgg(s *state, cmd command) error {
+	/*
 	err := scrapeFeeds(s)
 	if err != nil {
 		return fmt.Errorf("couldn't scrape feeds: %w", err)
 	}
+	*/
+		
 	/*
 	feed, err := fetchFeed(context.Background(), "https://blog.boot.dev/index.xml")
 	if err != nil {
@@ -67,7 +70,23 @@ func scrapeFeeds(s *state) error {
 		if err != nil {
 			fmt.Printf("Error marking feed %s as fetched: %v\n", feed.Name, err)
 		}
+		fmt.Printf("Feed %s scraped successfully.\n", feed.Name)
+		// Here you would typically process the feed items, e.g., save them to the database
+		items, err := fetchFeedPosts(context.Background(), feed.Url)
+		if err != nil {
+			fmt.Printf("Error fetching items for feed %s: %v\n", feed.Name, err)
+			continue
+		}	
+		for _, item := range items {
+			// Here you would typically save the item to the database
+			fmt.Printf("Item: %s - %s\n", item.Title, item.Link)
+			// You can also print the item description if needed
+			// fmt.Printf("Description: %s\n", item.Description)	
+			// fmt.Printf("Published: %s\n", item.PubDate)
+			
+		}	
 	}
 
 	return nil
 }
+
