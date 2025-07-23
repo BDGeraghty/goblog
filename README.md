@@ -197,7 +197,7 @@ go run . <command> [arguments]
 - Ensure the database exists and migrations have been applied
 
 **Command Not Found:**
-- Make sure you've built the application: `go build -o gator`
+- Make sure you've built the application: `go build -o goblog`
 - Or use `go run . <command>` instead
 
 **Permission Errors:**
@@ -218,6 +218,3 @@ To contribute to this project:
 
 ---
 
-## License
-
-[Add your license information here]

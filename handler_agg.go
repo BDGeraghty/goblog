@@ -61,18 +61,21 @@ func scrapeFeed(db *database.Queries, feed database.Feed) {
 			}
 		}
 
+		// Extract the time value from NullTime or use zero time if not valid
+		publishedAtTime := time.Time{}
+		if publishedAt.Valid {
+			publishedAtTime = publishedAt.Time
+		}
+
 		_, err = db.CreatePost(context.Background(), database.CreatePostParams{
 			ID:        uuid.New(),
 			CreatedAt: time.Now().UTC(),
 			UpdatedAt: time.Now().UTC(),
 			FeedID:    feed.ID,
 			Title:     item.Title,
-			Description: sql.NullString{
-				String: item.Description,
-				Valid:  true,
-			},
+			Description: item.Description,
 			Url:         item.Link,
-			PublishedAt: publishedAt,
+			PublishedAt: publishedAtTime,
 		})
 		if err != nil {
 			if strings.Contains(err.Error(), "duplicate key value violates unique constraint") {
