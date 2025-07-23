@@ -10,7 +10,7 @@ SELECT * FROM posts;
 SELECT * FROM posts
 WHERE id = $1;
 
--- name: GetPostForUser :many
+-- name: GetPostsForUser :many
 SELECT * FROM posts
 WHERE feed_id = $1
 ORDER BY created_at DESC
