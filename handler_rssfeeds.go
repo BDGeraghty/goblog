@@ -1,13 +1,7 @@
 package main
 
 import (
-	"context"
-	"encoding/xml"
-	"fmt"
-	"html"
-	"io"
-	"net/http"
-	"time"
+	
 )
 
 // RSSFeed represents the structure of an RSS feed
@@ -27,7 +21,7 @@ type RSSItem struct {
 	Description string `xml:"description"`
 	PubDate     string `xml:"pubDate"`
 }
-
+/*
 func fetchFeed(ctx context.Context, feedURL string) (*RSSFeed, error) {
 	
 	httpClient := http.Client{
@@ -72,6 +66,7 @@ func fetchFeed(ctx context.Context, feedURL string) (*RSSFeed, error) {
 
 	return &feed, nil
 }
+*/
 /*
 func handlerRSSFeeds(s *state, cmd command) error {
 	
