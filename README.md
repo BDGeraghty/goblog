@@ -74,7 +74,7 @@ Replace `"your-connection-string-here"` with the same connection string from you
 Build and run the application:
 
 ```sh
-go build -o gator
+go build -o goblog
 ./goblog <command> [arguments]
 ```
 
